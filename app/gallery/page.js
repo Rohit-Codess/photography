@@ -108,8 +108,10 @@ export default function GalleryPage() {
                 src={portfolio.imageGallery.nodes[0].guid}
                 alt={portfolio.title}
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
+                className="object-cover transition-all duration-500 ease-in-out group-hover:scale-110"
               />
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
             </div>
             <h3 className="text-xl font-semibold mt-2 group-hover:text-gray-600 transition-colors">{portfolio.title}</h3>
           </Link>

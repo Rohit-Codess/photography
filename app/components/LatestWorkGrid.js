@@ -26,13 +26,13 @@ export default function LatestWorkGrid({ portfolios }) {
               src={portfolio.imageGallery.nodes[0].guid}
               alt={portfolio.title}
               fill
-              className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+              className="object-cover transition-all duration-500 ease-in-out group-hover:scale-110"
             />
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent" />
+            {/* Overlay - darkens on hover */}
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent group-hover:bg-black/40 transition-all duration-300" />
             
             {/* Title */}
-            <h3 className="absolute bottom-4 left-4 text-white text-xl font-semibold">
+            <h3 className="absolute bottom-4 left-4 text-white text-xl font-semibold group-hover:bottom-6 transition-all duration-300">
               {portfolio.title}
             </h3>
           </Link>
