@@ -4,6 +4,9 @@ import Link from "next/link";
 import HeroSlider from "./components/HeroSlider";
 import LatestWorkGrid from "./components/LatestWorkGrid";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 // 1. A new, more powerful query
 // We get ALL portfolios for the slider
 // We also get the LATEST 6 portfolios for the grid
@@ -39,14 +42,22 @@ const GET_HOME_DATA = gql`
 `;
 
 export default async function Home() {
-  // 2. Fetch the data
-  const { data } = await getClient().query({
-    query: GET_HOME_DATA,
-    fetchPolicy: "no-cache"
-  });
+  // 2. Fetch the data with error handling
+  let allPortfolios = [];
+  let latestPortfolios = [];
+  
+  try {
+    const { data } = await getClient().query({
+      query: GET_HOME_DATA,
+      fetchPolicy: "no-cache"
+    });
 
-  const allPortfolios = data.allPortfolios.nodes;
-  const latestPortfolios = data.latestPortfolios.nodes;
+    allPortfolios = data?.allPortfolios?.nodes || [];
+    latestPortfolios = data?.latestPortfolios?.nodes || [];
+  } catch (error) {
+    console.error("Error fetching home data:", error);
+    // Return empty arrays if fetch fails
+  }
 
   // 3. Render the new homepage layout
   return (
