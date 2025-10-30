@@ -9,8 +9,24 @@ function createApolloClient() {
   return new ApolloClient({
     link: new HttpLink({
       uri: GRAPHQL_ENDPOINT,
+      fetchOptions: {
+        // Add timeout and retry options
+        timeout: 30000, // 30 seconds timeout
+      },
     }),
     cache: new InMemoryCache(),
+    // Disable SSR caching to avoid build-time issues
+    ssrMode: typeof window === 'undefined',
+    defaultOptions: {
+      watchQuery: {
+        fetchPolicy: 'no-cache',
+        errorPolicy: 'all',
+      },
+      query: {
+        fetchPolicy: 'no-cache',
+        errorPolicy: 'all',
+      },
+    },
   });
 }
 
