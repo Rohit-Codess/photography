@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Lens & Light Studio",
+  title: "RT Photography - We not just Capture Pictures, We Create Memories",
   description: "Photography Portfolio",
 };
 
